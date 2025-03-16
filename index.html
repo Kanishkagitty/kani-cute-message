@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Kani ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffecf0;
+        }
+        .door {
+            width: 200px;
+            height: 300px;
+            background: brown;
+            margin: 100px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .no {
+            background-color: #ff4d4d;
+            color: white;
+            position: relative;
+        }
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="door" onclick="openDoor()">Open</div>
+
+    <div class="container hidden" id="message">
+        <h2>Do u looveee Kani? 🥺</h2>
+        <button class="btn no" id="noBtn" onclick="moveNo()">No</button>
+        <button class="btn yes" onclick="sayYes()">Yes</button>
+    </div>
+
+    <script>
+        function openDoor() {
+            document.querySelector(".door").style.display = "none";
+            document.getElementById("message").classList.remove("hidden");
+        }
+
+        function moveNo() {
+            let btn = document.getElementById("noBtn");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            btn.style.position = "absolute";
+            btn.style.left = `${x}px`;
+            btn.style.top = `${y}px`;
+            btn.style.animation = "shake 0.5s";
+        }
+
+        function sayYes() {
+            document.getElementById("message").innerHTML = "<h2>Yeaa she does too! 🎉</h2>";
+            confetti();
+        }
+
+        function confetti() {
+            let confettiCount = 100;
+            for (let i = 0; i < confettiCount; i++) {
+                let confettiPiece = document.createElement("div");
+                confettiPiece.style.position = "fixed";
+                confettiPiece.style.width = "10px";
+                confettiPiece.style.height = "10px";
+                confettiPiece.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confettiPiece.style.left = `${Math.random() * 100}vw`;
+                confettiPiece.style.top = `${Math.random() * 100}vh`;
+                confettiPiece.style.opacity = "1";
+                confettiPiece.style.animation = "fall 1s linear infinite";
+                document.body.appendChild(confettiPiece);
+                setTimeout(() => confettiPiece.remove(), 2000);
+            }
+        }
+    </script>
+
+</body>
+</html>
